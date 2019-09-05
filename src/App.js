@@ -21,13 +21,8 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App text-center">
-          <Route path='/' exact component={() =>
-            <TableComponent
-              getUserId={this.getUserId}
-              btnHandle={this.btnHandle}
-            />} />
-          <Route path='/album' component={() =>
-            <AlbumComponent id={this.state.userId} />} />
+          <Route path='/' exact component={() => <TableComponent getUserId={this.getUserId} />} />
+          <Route path='/album' component={() => <AlbumComponent id={this.state.userId} />} />
         </div>
       </Router>
     );

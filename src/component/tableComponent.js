@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import AlbumComponent from './albumComponent'
 
 class TableComponent extends React.Component {
     constructor(props) {
@@ -20,24 +19,28 @@ class TableComponent extends React.Component {
     render() {
         return (
             <Table >
-                <tr>
-                    <th>User-ID</th>
-                    <th>Album Title</th>
-                    <th>View Album</th>
-                </tr>
-                {this.state.fetchData.map((item) =>
-                    item.userId === this.state.counter &&
-                    <tr key={item.id}>
-                        <td>{item.userId}</td>
-                        <td>{item.title}</td>
-                        <td>
-                            <Link to='/album' >
-                                <Button onClick={() => { this.props.getUserId(item.userId); }}>View</Button>
-                            </Link>
-                        </td>
-                        <td className='d-none'>{this.state.counter++}</td>
+                <thead>
+                    <tr>
+                        <th>User-ID</th>
+                        <th>Album Title</th>
+                        <th>View Album</th>
                     </tr>
-                )}
+                </thead>
+                <tbody>
+                    {this.state.fetchData.map((item) =>
+                        item.userId === this.state.counter &&
+                        <tr key={item.id}>
+                            <td>{item.userId}</td>
+                            <td>{item.title}</td>
+                            <td>
+                                <Link to='/album' >
+                                    <Button onClick={() => { this.props.getUserId(item.userId); }}>View</Button>
+                                </Link>
+                            </td>
+                            <td className='d-none'>{this.state.counter++}</td>
+                        </tr>
+                    )}
+                </tbody>
             </Table>
         );
     }

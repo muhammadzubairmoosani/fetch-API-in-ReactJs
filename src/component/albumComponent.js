@@ -41,7 +41,7 @@ class AlbumComponent extends React.Component {
                         className='fixed-bottom m-4 btn-lg rounded-circle font-weight-bold '
                         variant="dark">
                         &#60;
-                        </Button>
+                    </Button>
                 </Link>
             </div>
         )
