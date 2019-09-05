@@ -1,33 +1,25 @@
 import React from 'react';
+import { Table, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import AlbumComponent from './albumComponent'
-import { Button, Table } from 'reactstrap';
 
 class TableComponent extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             fetchData: [],
             counter: 1,
-            hide: '',
-            show: 'd-none'
         }
-        this.getAlbumFromId = this.getAlbumFromId.bind(this);
     }
     componentWillMount() {
         fetch('https://jsonplaceholder.typicode.com/albums')
-            .then(res => res.json())
-            .then(data => this.setState({ fetchData: data }))
-    }
-    getAlbumFromId(id, displayHide, displayShow) {
-        fetch('https://jsonplaceholder.typicode.com/photos?albumId=' + id)
             .then(res => res.json()).then(json => this.setState({ fetchData: json }))
-        this.setState({ hide: displayHide, show: displayShow })
-        console.log('hello')
     }
+
     render() {
         return (
             <>
-                <Table className={this.state.hide}>
+                <Table >
                     <tr>
                         <th>User-ID</th>
                         <th>Album Title</th>
@@ -39,13 +31,15 @@ class TableComponent extends React.Component {
                             <td>{item.userId}</td>
                             <td>{item.title}</td>
                             <td>
-                                <Button onClick={() => this.getAlbumFromId(item.userId, 'd-none', 'd-flex')}>View</Button>
+                                <Link to='/album' >
+                                    <Button onClick={() => this.props.fn(item.userId)}>View</Button>
+                                </Link>
                             </td>
                             <td className='d-none'>{this.state.counter++}</td>
                         </tr>
                     )}
                 </Table>
-                <AlbumComponent fetchData={this.state.fetchData} show={this.state.show} getAlbumFromId={this.getAlbumFromId} />
+                <AlbumComponent />
             </>
         );
     }
