@@ -17,7 +17,7 @@ class AlbumComponent extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentWillMount(id) {
         fetch('https://jsonplaceholder.typicode.com/photos?albumId=' + this.props.id)
             .then(res => res.json()).then(json => this.setState({ data: json }))
     }
@@ -37,11 +37,11 @@ class AlbumComponent extends React.Component {
                     </Card>
                 )}
                 <Link to='/'>
-                    <img
-                        src="./component/back.svg"
-                        className='fixed-bottom m-4 btn-lg rounded-circle font-weight-bold'
-                        variant="dark"
-                        alt="backArrow" />
+                    <Button
+                        className='fixed-bottom m-4 btn-lg rounded-circle font-weight-bold '
+                        variant="dark">
+                        &#60;
+                        </Button>
                 </Link>
             </div>
         )

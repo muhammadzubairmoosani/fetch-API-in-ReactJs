@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import AlbumComponent from './albumComponent'
 
 class TableComponent extends React.Component {
     constructor(props) {

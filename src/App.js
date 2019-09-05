@@ -1,17 +1,19 @@
 import React from 'react';
-import TableComponent from './tableComponent';
-import AlbumComponent from './albumComponent';
+import TableComponent from './component/tableComponent';
+import AlbumComponent from './component/albumComponent';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      userId: ''
+      userId: '',
+      display: 'd-none'
     }
-    this.fn = this.fn.bind(this)
+    this.getUserId = this.getUserId.bind(this);
   }
-  fn(id) {
+
+  getUserId(id) {
     this.setState({ userId: id })
   }
 
@@ -19,8 +21,13 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App text-center">
-          <Route path='/' exact component={() => <TableComponent fn={this.fn} />} />
-          <Route path='/album' component={() => <AlbumComponent id={this.state.userId} />} />
+          <Route path='/' exact component={() =>
+            <TableComponent
+              getUserId={this.getUserId}
+              btnHandle={this.btnHandle}
+            />} />
+          <Route path='/album' component={() =>
+            <AlbumComponent id={this.state.userId} />} />
         </div>
       </Router>
     );
